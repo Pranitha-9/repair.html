@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WashCare - Washing Machine Repair</title>
+
+    <style>
+
+        /* =========================
+           RESET
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f8fc;
+            color: #26364a;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 5px 25px rgba(0, 60, 120, 0.08);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            padding: 18px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #0875d1;
+        }
+
+        .logo span {
+            color: #26364a;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #0875d1;
+        }
+
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            min-height: 90vh;
+
+            display: flex;
+            align-items: center;
+
+            background:
+                radial-gradient(circle at 85% 20%, #cfe9ff, transparent 35%),
+                linear-gradient(135deg, #eef8ff, #ffffff);
+
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            width: 90%;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(40px, 5vw, 68px);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            color: #0875d1;
+        }
+
+        .hero-content p {
+            color: #607086;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .primary {
+            background: linear-gradient(135deg, #0875d1, #00a6e8);
+            color: white;
+            box-shadow: 0 10px 25px rgba(8, 117, 209, 0.25);
+        }
+
+        .secondary {
+            border: 2px solid #0875d1;
+            color: #0875d1;
+            background: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+        }
+
+
+        /* =========================
+           HERO MACHINE
+        ========================== */
+
+        .machine-box {
+            height: 430px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            perspective: 1000px;
+        }
+
+        .machine {
+            width: 260px;
+            height: 340px;
+
+            background: linear-gradient(145deg, #ffffff, #dce8f2);
+
+            border-radius: 25px;
+
+            box-shadow:
+                20px 20px 40px rgba(0, 60, 120, 0.15),
+                inset 5px 5px 10px white;
+
+            position: relative;
+
+            animation: floating 4s ease-in-out infinite;
+        }
+
+        .machine-top {
+            height: 60px;
+            background: #d9e4ed;
+            border-radius: 25px 25px 0 0;
+        }
+
+        .display {
+            width: 80px;
+            height: 25px;
+
+            background: #26364a;
+            border-radius: 8px;
+
+            position: absolute;
+            top: 18px;
+            left: 25px;
+        }
+
+        .door {
+            width: 180px;
+            height: 180px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(circle, #263b50 0 40%, #6d8498 41% 48%, #dce7ef 49%);
+
+            position: absolute;
+            top: 95px;
+            left: 40px;
+
+            border: 10px solid #edf4f8;
+
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        @keyframes floating {
+
+            0%, 100% {
+                transform: translateY(0) rotateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px) rotateY(5deg);
+            }
+        }
+
+
+        /* =========================
+           COMMON SECTION
+        ========================== */
+
+        section {
+            padding: 90px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #718096;
+        }
+
+
+        /* =========================
+           SERVICE CARDS
+        ========================== */
+
+        .services {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .flip-card {
+            height: 250px;
+            perspective: 1000px;
+        }
+
+        .flip-inner {
+            width: 100%;
+            height: 100%;
+
+            position: relative;
+
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-front,
+        .flip-back {
+
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+
+            backface-visibility: hidden;
+
+            border-radius: 22px;
+
+            padding: 30px;
+
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            box-shadow: 0 15px 35px rgba(0, 70, 130, 0.1);
+        }
+
+        .flip-front {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(15px);
+        }
+
+        .flip-back {
+            background: linear-gradient(135deg, #0875d1, #00a6e8);
+            color: white;
+
+            transform: rotateY(180deg);
+        }
+
+        .service-icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .flip-front h3 {
+            font-size: 22px;
+        }
+
+
+        /* =========================
+           BRANDS
+        ========================== */
+
+        .brands {
+            background: white;
+        }
+
+        .brand-grid {
+            max-width: 1000px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+        }
+
+        .brand {
+            padding: 25px 10px;
+            background: #f5f9fd;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .brand:hover {
+            transform: translateY(-8px);
+            background: #e4f3ff;
+            color: #0875d1;
+        }
+
+
+        /* =========================
+           WHY US
+        ========================== */
+
+        .why-container {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .why-card {
+            padding: 30px 20px;
+
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(15px);
+
+            border-radius: 20px;
+
+            text-align: center;
+
+            box-shadow: 0 10px 30px rgba(0,50,100,0.08);
+
+            transition: 0.4s;
+        }
+
+        .why-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .why-card .icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+
+        /* =========================
+           PRICING
+        ========================== */
+
+        .pricing {
+            background: linear-gradient(135deg, #eef8ff, #ffffff);
+        }
+
+        .price-grid {
+            max-width: 1000px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .price-card {
+            background: white;
+            padding: 35px;
+
+            border-radius: 25px;
+
+            text-align: center;
+
+            box-shadow: 0 15px 35px rgba(0,60,120,0.1);
+
+            transition: 0.4s;
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .price {
+            font-size: 35px;
+            color: #0875d1;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .price-card ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .price-card li {
+            margin: 10px;
+        }
+
+
+        /* =========================
+           HOW IT WORKS
+        ========================== */
+
+        .steps {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 65px;
+            height: 65px;
+
+            margin: auto auto 20px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: linear-gradient(135deg, #0875d1, #00a6e8);
+            color: white;
+
+            font-size: 22px;
+            font-weight: bold;
+
+            box-shadow: 0 10px 25px rgba(8,117,209,0.25);
+        }
+
+
+        /* =========================
+           REVIEWS
+        ========================== */
+
+        .reviews {
+            background: white;
+        }
+
+        .review-grid {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .review {
+            padding: 30px;
+
+            border-radius: 20px;
+
+            background: #f7fbff;
+
+            transition: 0.3s;
+        }
+
+        .review:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(0,60,120,0.1);
+        }
+
+        .stars {
+            color: #f6b800;
+            margin-bottom: 15px;
+        }
+
+        .review p {
+            color: #64748b;
+        }
+
+        .review h4 {
+            margin-top: 20px;
+        }
+
+
+        /* =========================
+           BOOKING
+        ========================== */
+
+        .booking {
+            background: linear-gradient(135deg, #0875d1, #00a6e8);
+        }
+
+        .booking-container {
+            max-width: 850px;
+            margin: auto;
+
+            background: rgba(255,255,255,0.15);
+
+            backdrop-filter: blur(20px);
+
+            padding: 40px;
+
+            border-radius: 25px;
+
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .booking h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            background: rgba(255,255,255,0.95);
+        }
+
+        textarea {
+            grid-column: 1 / -1;
+            min-height: 120px;
+            resize: none;
+        }
+
+        .submit {
+            grid-column: 1 / -1;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            background: #26364a;
+            color: white;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .submit:hover {
+            background: #142334;
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================
+           CONTACT
+        ========================== */
+
+        .contact-grid {
+            max-width: 1000px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .contact-card {
+            padding: 30px;
+
+            background: white;
+
+            border-radius: 20px;
+
+            text-align: center;
+
+            box-shadow: 0 10px 30px rgba(0,50,100,0.08);
+
+            transition: 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .contact-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            background: #172638;
+            color: white;
+            padding: 50px 20px 20px;
+        }
+
+        .footer-grid {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+        }
+
+        footer p,
+        footer li {
+            color: #b9c6d4;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin: 8px 0;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #3a4b5e;
+            margin-top: 30px;
+            padding-top: 20px;
+            color: #aebccc;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 900px) {
+
+            nav {
+                gap: 12px;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .services {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .brand-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .why-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .price-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .review-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .brand-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .why-container {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            textarea,
+            .submit {
+                grid-column: auto;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .machine-box {
+                transform: scale(0.8);
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================== -->
+
+<header>
+
+    <div class="navbar">
+
+        <div class="logo">
+            🔧 Wash<span>Care</span>
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="#brands">Brands</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================== -->
+
+<section class="hero" id="home">
+
+    <div class="hero-container">
+
+        <div class="hero-content">
+
+            <h1>
+                Expert Washing Machine
+                <span>Repair Service</span>
+            </h1>
+
+            <p>
+                Fast, reliable and professional washing machine
+                repair services at your doorstep.
+            </p>
+
+            <div class="buttons">
+
+                <a href="#booking" class="btn primary">
+                    🔧 Book a Repair
+                </a>
+
+                <a href="tel:+919876543210" class="btn secondary">
+                    📞 Call Now
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="machine-box">
+
+            <div class="machine">
+
+                <div class="machine-top"></div>
+
+                <div class="display"></div>
+
+                <div class="door"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SERVICES
+========================== -->
+
+<section id="services">
+
+    <div class="section-title">
+
+        <h2>Our Repair Services</h2>
+
+        <p>
+            Professional solutions for all washing machine problems
+        </p>
+
+    </div>
+
+
+    <div class="services">
+
+
+        <div class="flip-card">
+
+            <div class="flip-inner">
+
+                <div class="flip-front">
+
+                    <div class="service-icon">🔧</div>
+
+                    <h3>General Repair</h3>
+
+                    <p>Complete washing machine diagnosis.</p>
+
+                </div>
+
+                <div class="flip-back">
+
+                    <h3>General Repair</h3>
+
+                    <p>
+                        Our technicians diagnose and repair
+                        common washing machine problems.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="flip-card">
+
+            <div class="flip-inner">
+
+                <div class="flip-front">
+
+                    <div class="service-icon">⚙️</div>
+
+                    <h3>Motor Repair</h3>
+
+                    <p>Motor and drum related problems.</p>
+
+                </div>
+
+                <div class="flip-back">
+
+                    <h3>Motor Repair</h3>
+
+                    <p>
+                        Professional inspection and repair
+                        for motor-related issues.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="flip-card">
+
+            <div class="flip-inner">
+
+                <div class="flip-front">
+
+                    <div class="service-icon">💧</div>
+
+                    <h3>Water Leakage</h3>
+
+                    <p>Leak detection and repair.</p>
+
+                </div>
+
+                <div class="flip-back">
+
+                    <h3>Water Leakage</h3>
+
+                    <p>
+                        We identify leakage points and
+                        repair the affected components.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="flip-card">
+
+            <div class="flip-inner">
+
+                <div class="flip-front">
+
+                    <div class="service-icon">💻</div>
+
+                    <h3>PCB Repair</h3>
+
+                    <p>Electronic control board service.</p>
+
+                </div>
+
+                <div class="flip-back">
+
+                    <h3>PCB Repair</h3>
+
+                    <p>
+                        Professional diagnosis of
+                        electronic control systems.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="flip-card">
+
+            <div class="flip-inner">
+
+                <div class="flip-front">
+
+                    <div class="service-icon">🌀</div>
+
+                    <h3>Drum Repair</h3>
+
+                    <p>Drum noise and spinning issues.</p>
+
+                </div>
+
+                <div class="flip-back">
+
+                    <h3>Drum Repair</h3>
+
+                    <p>
+                        Repair solutions for drum,
+                        bearing and spinning problems.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="flip-card">
+
+            <div class="flip-inner">
+
+                <div class="flip-front">
+
+                    <div class="service-icon">🏠</div>
+
+                    <h3>Installation</h3>
+
+                    <p>Professional machine installation.</p>
+
+                </div>
+
+                <div class="flip-back">
+
+                    <h3>Installation</h3>
+
+                    <p>
+                        Safe and professional installation
+                        at your location.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     BRANDS
+========================== -->
+
+<section class="brands" id="brands">
+
+    <div class="section-title">
+
+        <h2>Brands We Service</h2>
+
+        <p>Experienced technicians for major washing machine brands</p>
+
+    </div>
+
+
+    <div class="brand-grid">
+
+        <div class="brand">LG</div>
+        <div class="brand">Samsung</div>
+        <div class="brand">Whirlpool</div>
+        <div class="brand">IFB</div>
+        <div class="brand">Bosch</div>
+        <div class="brand">Haier</div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     WHY CHOOSE US
+========================== -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>Why Choose WashCare?</h2>
+
+        <p>Quality service with customer-first support</p>
+
+    </div>
+
+
+    <div class="why-container">
+
+        <div class="why-card">
+
+            <div class="icon">👨‍🔧</div>
+
+            <h3>Expert Technicians</h3>
+
+            <p>Experienced service professionals.</p>
+
+        </div>
+
+
+        <div class="why-card">
+
+            <div class="icon">⚡</div>
+
+            <h3>Fast Service</h3>
+
+            <p>Quick response and convenient scheduling.</p>
+
+        </div>
+
+
+        <div class="why-card">
+
+            <div class="icon">🛠️</div>
+
+            <h3>Quality Parts</h3>
+
+            <p>Reliable replacement components.</p>
+
+        </div>
+
+
+        <div class="why-card">
+
+            <div class="icon">💰</div>
+
+            <h3>Affordable</h3>
+
+            <p>Transparent and competitive pricing.</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PRICING
+========================== -->
+
+<section class="pricing" id="pricing">
+
+    <div class="section-title">
+
+        <h2>Service Pricing</h2>
+
+        <p>Simple and transparent service options</p>
+
+    </div>
+
+
+    <div class="price-grid">
+
+
+        <div class="price-card">
+
+            <h3>Inspection</h3>
+
+            <div class="price">₹199</div>
+
+            <ul>
+
+                <li>✔ Machine inspection</li>
+                <li>✔ Problem diagnosis</li>
+                <li>✔ Service estimate</li>
+
+            </ul>
+
+            <a href="#booking" class="btn primary">
+                Book Now
+            </a>
+
+        </div>
+
+
+        <div class="price-card">
+
+            <h3>Basic Repair</h3>
+
+            <div class="price">₹499</div>
+
+            <ul>
+
+                <li>✔ Basic troubleshooting</li>
+                <li>✔ Minor repair</li>
+                <li>✔ Technician visit</li>
+
+            </ul>
+
+            <a href="#booking" class="btn primary">
+                Book Now
+            </a>
+
+        </div>
+
+
+        <div class="price-card">
+
+            <h3>Advanced Repair</h3>
+
+            <div class="price">₹999+</div>
+
+            <ul>
+
+                <li>✔ Advanced diagnosis</li>
+                <li>✔ Major repair</li>
+                <li>✔ Expert technician</li>
+
+            </ul>
+
+            <a href="#booking" class="btn primary">
+                Book Now
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     HOW IT WORKS
+========================== -->
+
+<section>
+
+    <div class="section-title">
+
+        <h2>How It Works</h2>
+
+        <p>Get your washing machine repaired in simple steps</p>
+
+    </div>
+
+
+    <div class="steps">
+
+        <div class="step">
+
+            <div class="step-number">1</div>
+
+            <h3>Book Service</h3>
+
+            <p>Submit your service request.</p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">2</div>
+
+            <h3>Technician Visit</h3>
+
+            <p>Our technician visits your location.</p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">3</div>
+
+            <h3>Diagnosis</h3>
+
+            <p>Problem is inspected carefully.</p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-number">4</div>
+
+            <h3>Repair</h3>
+
+            <p>Machine is repaired professionally.</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     REVIEWS
+========================== -->
+
+<section class="reviews">
+
+    <div class="section-title">
+
+        <h2>Customer Reviews</h2>
+
+        <p>What our customers say</p>
+
+    </div>
+
+
+    <div class="review-grid">
+
+
+        <div class="review">
+
+            <div class="stars">★★★★★</div>
+
+            <p>
+                Very professional service. The technician
+                diagnosed the problem quickly.
+            </p>
+
+            <h4>— Rahul Sharma</h4>
+
+        </div>
+
+
+        <div class="review">
+
+            <div class="stars">★★★★★</div>
+
+            <p>
+                Easy booking process and reasonable
+                repair charges.
+            </p>
+
+            <h4>— Priya Patil</h4>
+
+        </div>
+
+
+        <div class="review">
+
+            <div class="stars">★★★★★</div>
+
+            <p>
+                Technician was punctual and explained
+                everything clearly.
+            </p>
+
+            <h4>— Amit Joshi</h4>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     BOOKING
+========================== -->
+
+<section class="booking" id="booking">
+
+    <div class="booking-container">
+
+        <h2>Book a Washing Machine Repair</h2>
+
+        <form>
+
+            <div class="form-grid">
+
+                <input
+                    type="text"
+                    placeholder="Your Name"
+                    required
+                >
+
+                <input
+                    type="tel"
+                    placeholder="Phone Number"
+                    required
+                >
+
+                <select>
+
+                    <option>Select Brand</option>
+                    <option>LG</option>
+                    <option>Samsung</option>
+                    <option>Whirlpool</option>
+                    <option>IFB</option>
+                    <option>Bosch</option>
+                    <option>Haier</option>
+
+                </select>
+
+
+                <select>
+
+                    <option>Select Service</option>
+                    <option>General Repair</option>
+                    <option>Motor Repair</option>
+                    <option>PCB Repair</option>
+                    <option>Drum Repair</option>
+                    <option>Water Leakage</option>
+                    <option>Installation</option>
+
+                </select>
+
+
+                <input
+                    type="date"
+                >
+
+                <input
+                    type="text"
+                    placeholder="City"
+                >
+
+                <textarea
+                    placeholder="Describe your washing machine problem..."
+                ></textarea>
+
+
+                <button class="submit" type="submit">
+                    🔧 Submit Service Request
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================== -->
+
+<section id="contact">
+
+    <div class="section-title">
+
+        <h2>Contact Us</h2>
+
+        <p>We are ready to help with your washing machine problems</p>
+
+    </div>
+
+
+    <div class="contact-grid">
+
+
+        <div class="contact-card">
+
+            <div class="contact-icon">📞</div>
+
+            <h3>Call Us</h3>
+
+            <p>+91 98765 43210</p>
+
+        </div>
+
+
+        <div class="contact-card">
+
+            <div class="contact-icon">📧</div>
+
+            <h3>Email</h3>
+
+            <p>support@washcare.com</p>
+
+        </div>
+
+
+        <div class="contact-card">
+
+            <div class="contact-icon">🕐</div>
+
+            <h3>Working Hours</h3>
+
+            <p>9:00 AM – 8:00 PM</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================== -->
+
+<footer>
+
+    <div class="footer-grid">
+
+        <div>
+
+            <h3>🔧 WashCare</h3>
+
+            <p>
+                Professional washing machine repair
+                services at your doorstep.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>Services</h3>
+
+            <ul>
+
+                <li>General Repair</li>
+                <li>Motor Repair</li>
+                <li>PCB Repair</li>
+                <li>Installation</li>
+
+            </ul>
+
+        </div>
+
+
+        <div>
+
+            <h3>Quick Links</h3>
+
+            <ul>
+
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+
+            </ul>
+
+        </div>
+
+
+        <div>
+
+            <h3>Service Area</h3>
+
+            <ul>
+
+                <li>Pune</li>
+                <li>Mumbai</li>
+                <li>Hyderabad</li>
+                <li>Bangalore</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2026 WashCare. All Rights Reserved.
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>
